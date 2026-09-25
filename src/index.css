@@ -1,0 +1,122 @@
+:root {
+  --text: #303846;
+  --text-light: #687386;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --border: #e1e5eb;
+  --primary: #ff5722;
+  --shadow: 0 8px 24px rgba(30, 45, 70, 0.1);
+
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: min(1126px, 100%);
+  min-height: 100svh;
+  margin: 0 auto;
+  background: var(--surface);
+  border-inline: 1px solid var(--border);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+/* Header global de la aplicacion */
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 20px 24px;
+  color: #ffffff;
+  background: #20242d;
+}
+
+.encabezado h1 {
+  flex: 1 1 100%;
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.encabezado nav {
+  display: inline-flex;
+}
+
+.encabezado a {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.encabezado a:hover {
+  color: var(--primary);
+}
+
+/* Footer global de la aplicacion */
+
+.pie-de-posteo {
+  padding: 20px 24px;
+  color: #ffffff;
+  background: #20242d;
+  text-align: center;
+}
+
+.pie-de-posteo p {
+  margin: 0;
+  color: #d7dce5;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .encabezado {
+    gap: 0.75rem;
+    padding: 16px;
+  }
+
+  .encabezado h1 {
+    font-size: 1.5rem;
+  }
+
+  .pie-de-posteo {
+    padding: 16px;
+  }
+}
