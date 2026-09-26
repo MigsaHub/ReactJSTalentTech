@@ -20,6 +20,11 @@ const Nav = () => {
             Contacto
           </Link>
         </li>
+        <li>
+          <Link to="/carrito" className={styles.navLink}>
+            Carrito
+          </Link>
+        </li>
       </ul>
     </nav>
   );
