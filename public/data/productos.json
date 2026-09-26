@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Monitor 27 pulgadas",
+    "title": "Monitor Noblex 27 pulgadas",
     "price": 129999.99,
     "stock": 22,
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_728527-MLA99914838207_112025-F.webp",
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "title": "Teclado mecánico",
+    "title": "Teclado Attack Shark mecánico",
     "price": 99999.99,
     "stock": 19,
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_905548-CBT114854118134_082026-F.webp",
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "title": "Mouse inalámbrico Gamer",
+    "title": "Mouse Attack Shark inalámbrico Gamer",
     "price": 59999.99,
     "stock": 18,
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_844880-MLA79274666536_092024-F.webp",
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "title": "Notebook ultradelgada",
+    "title": "Notebook Lenovo ultradelgada",
     "price": 899999.99,
     "stock": 0,
     "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80",
@@ -33,7 +33,7 @@
   },
   {
     "id": 5,
-    "title": "Auriculares inalámbricos",
+    "title": "Auriculares inalámbricos Logitech",
     "price": 119999.99,
     "stock": 25,
     "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
@@ -41,7 +41,7 @@
   },
   {
     "id": 6,
-    "title": "Smartphone",
+    "title": "Smartphone Samsung Galaxy",
     "price": 649999.99,
     "stock": 12,
     "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
@@ -49,7 +49,7 @@
   },
   {
     "id": 7,
-    "title": "Tablet 10 pulgadas",
+    "title": "Tablet Samsung 10 pulgadas",
     "price": 399999.99,
     "stock": 9,
     "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
@@ -57,7 +57,7 @@
   },
   {
     "id": 8,
-    "title": "Smartwatch",
+    "title": "Smartwatch Samsung Galaxy",
     "price": 179999.99,
     "stock": 14,
     "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
@@ -65,7 +65,7 @@
   },
   {
     "id": 9,
-    "title": "Parlante Bluetooth",
+    "title": "Parlante JBL Bluetooth",
     "price": 99999.99,
     "stock": 20,
     "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
@@ -73,7 +73,7 @@
   },
   {
     "id": 10,
-    "title": "Cámara digital",
+    "title": "Cámara Sony digital",
     "price": 549999.99,
     "stock": 6,
     "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
@@ -81,7 +81,7 @@
   },
   {
     "id": 11,
-    "title": "Control inalámbrico",
+    "title": "Control XBOX inalámbrico",
     "price": 109999.99,
     "stock": 11,
     "image": "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=800&q=80",
@@ -89,10 +89,10 @@
   },
   {
     "id": 12,
-    "title": "Disco SSD externo",
+    "title": "Ventilador RGB para PC",
     "price": 149999.99,
     "stock": 16,
     "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80",
-    "description": "Disco SSD externo compacto y rápido para almacenar, transferir y realizar copias de seguridad de tus archivos."
+    "description": "Ventilador RGB para PC con diseño atractivo y rendimiento eficiente."
   }
 ]

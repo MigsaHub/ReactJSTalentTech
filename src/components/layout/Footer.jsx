@@ -43,10 +43,18 @@ function Footer() {
             <h4>Información legal</h4>
 
             <ul>
-              <li>Propiedad intelectual</li>
-              <li>Políticas de privacidad</li>
-              <li>Términos y condiciones</li>
-              <li>Protección de datos</li>
+              <li>
+                <a href="/legal/IntelectualProperty">Propiedad intelectual</a>
+              </li>
+              <li>
+                <a href="/legal/PrivacyPolicy">Políticas de privacidad</a>
+              </li>
+              <li>
+                <a href="/legal/TermsAndConditions">Términos y condiciones</a>
+              </li>
+              <li>
+                <a href="/legal/DataProtection">Protección de datos</a>
+              </li>
             </ul>
           </div>
 

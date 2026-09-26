@@ -1,0 +1,166 @@
+.bienvenida {
+  min-height: 420px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px 30px;
+
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+
+  box-sizing: border-box;
+}
+
+.contenido {
+  width: 100%;
+  max-width: 1100px;
+
+  text-align: center;
+}
+
+/* Etiqueta superior */
+
+.etiqueta {
+  display: inline-block;
+
+  margin-bottom: 15px;
+  padding: 6px 14px;
+
+  border-radius: 20px;
+
+  background-color: #e0e7ff;
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Título */
+
+.contenido h1 {
+  margin: 0 0 20px;
+
+  color: #1f2937;
+
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+/* Descripción */
+
+.contenido > p {
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  color: #4b5563;
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Características */
+
+.caracteristicas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+
+  margin-top: 50px;
+}
+
+/* Cada característica */
+
+.caracteristica {
+  padding: 25px 20px;
+
+  background-color: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.caracteristica:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Iconos */
+
+.icono {
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-size: 32px;
+}
+
+/* Títulos de las características */
+
+.caracteristica h3 {
+  margin: 0 0 10px;
+
+  color: #1f2937;
+
+  font-size: 17px;
+}
+
+/* Texto */
+
+.caracteristica p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 900px) {
+  .contenido h1 {
+    font-size: 36px;
+  }
+
+  .caracteristicas {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+  .bienvenida {
+    padding: 40px 20px;
+  }
+
+  .contenido h1 {
+    font-size: 30px;
+  }
+
+  .contenido > p {
+    font-size: 16px;
+  }
+
+  .caracteristicas {
+    margin-top: 35px;
+  }
+}
