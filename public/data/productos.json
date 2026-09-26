@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "Monitor 27 pulgadas",
+    "price": 129999.99,
+    "stock": 22,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_728527-MLA99914838207_112025-F.webp",
+    "description": "Monitor de 27 pulgadas con pantalla de alta resolución, ideal para trabajo, entretenimiento y gaming."
+  },
+  {
+    "id": 2,
+    "title": "Teclado mecánico",
+    "price": 99999.99,
+    "stock": 19,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_905548-CBT114854118134_082026-F.webp",
+    "description": "Teclado mecánico con respuesta rápida y precisa, ideal para gaming y largas jornadas de trabajo."
+  },
+  {
+    "id": 3,
+    "title": "Mouse inalámbrico Gamer",
+    "price": 59999.99,
+    "stock": 18,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_844880-MLA79274666536_092024-F.webp",
+    "description": "Mouse inalámbrico diseñado para gaming, con precisión y libertad de movimiento sin cables."
+  },
+  {
+    "id": 4,
+    "title": "Notebook ultradelgada",
+    "price": 899999.99,
+    "stock": 0,
+    "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80",
+    "description": "Notebook ultradelgada y portátil, ideal para trabajar, estudiar y disfrutar de contenido multimedia."
+  },
+  {
+    "id": 5,
+    "title": "Auriculares inalámbricos",
+    "price": 119999.99,
+    "stock": 25,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+    "description": "Auriculares inalámbricos con diseño cómodo y sonido de alta calidad para disfrutar de tu música."
+  },
+  {
+    "id": 6,
+    "title": "Smartphone",
+    "price": 649999.99,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+    "description": "Smartphone moderno con pantalla de alta calidad, cámara integrada y excelente rendimiento."
+  },
+  {
+    "id": 7,
+    "title": "Tablet 10 pulgadas",
+    "price": 399999.99,
+    "stock": 9,
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
+    "description": "Tablet de 10 pulgadas perfecta para estudiar, trabajar, navegar por internet y disfrutar de contenido."
+  },
+  {
+    "id": 8,
+    "title": "Smartwatch",
+    "price": 179999.99,
+    "stock": 14,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+    "description": "Smartwatch elegante para consultar notificaciones, controlar tu actividad y llevar un registro diario."
+  },
+  {
+    "id": 9,
+    "title": "Parlante Bluetooth",
+    "price": 99999.99,
+    "stock": 20,
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
+    "description": "Parlante Bluetooth compacto con sonido potente, ideal para disfrutar de música en cualquier lugar."
+  },
+  {
+    "id": 10,
+    "title": "Cámara digital",
+    "price": 549999.99,
+    "stock": 6,
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+    "description": "Cámara digital versátil para capturar fotografías y videos con gran nivel de detalle."
+  },
+  {
+    "id": 11,
+    "title": "Control inalámbrico",
+    "price": 109999.99,
+    "stock": 11,
+    "image": "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=800&q=80",
+    "description": "Control inalámbrico ergonómico diseñado para disfrutar de tus videojuegos con comodidad y precisión."
+  },
+  {
+    "id": 12,
+    "title": "Disco SSD externo",
+    "price": 149999.99,
+    "stock": 16,
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80",
+    "description": "Disco SSD externo compacto y rápido para almacenar, transferir y realizar copias de seguridad de tus archivos."
+  }
+]
