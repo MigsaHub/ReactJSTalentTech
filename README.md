@@ -1,16 +1,54 @@
-# React + Vite
+# 🎮 Gaming Store Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Practica de React, enfocado en la creación de una tienda online de productos gaming y tecnológicos.
 
-Currently, two official plugins are available:
+La aplicación permite visualizar un catálogo de productos, consultar el detalle de cada producto, navegar entre las diferentes secciones utilizando React Router. Aun no habilitado funcionalidad de carrito.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 📋 Descripción
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+El proyecto fue desarrollado utilizando React y está orientado a la práctica de conceptos fundamentales del desarrollo de aplicaciones web modernas:
 
-## Expanding the ESLint configuration
+- Componentización
+- Props
+- Hooks
+- Manejo de estado
+- React Router
+- Consumo de datos mediante `fetch`
+- CSS Modules
+- Renderizado dinámico
+- Navegación SPA
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Los productos se cargan desde un archivo JSON local utilizando `fetch` y `useEffect`, simulando el consumo de datos desde una API.
+
+---
+
+## ✨ Funcionalidades
+
+### 🏠 Página de inicio
+
+La página principal presenta:
+
+- Información de la tienda.
+- Descripción de Gaming Store Pro.
+- Principales características del servicio.
+- Header y navegación.
+- Footer corporativo.
+
+### 🛍️ Catálogo de productos
+
+La sección `/productos` muestra los productos disponibles en formato de grid.
+
+Cada producto incluye:
+
+- Imagen
+- Nombre
+- Precio
+- Stock
+- Acceso al detalle del producto
+
+Los productos son cargados desde:
+
+```text
+public/data/productos.json
