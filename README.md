@@ -52,3 +52,9 @@ Los productos son cargados desde:
 
 ```text
 public/data/productos.json
+```
+Los datos del footer son cargados desde un archivo footerData.js, para una actualizacion sin tocar el componente y agregar mas datos a futuro, desde:
+
+```text
+src/assets/data/footerData.js
+```
