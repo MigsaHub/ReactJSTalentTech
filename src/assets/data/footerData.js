@@ -7,19 +7,19 @@ export const empresa = {
 export const enlacesLegales = [
   {
     nombre: "Propiedad intelectual",
-    ruta: "/pages/IntelectualProperty",
+    ruta: "/IntelectualProperty",
   },
   {
     nombre: "Políticas de privacidad",
-    ruta: "/pages/PrivacyPolicy",
+    ruta: "/PrivacyPolicy",
   },
   {
     nombre: "Términos y condiciones",
-    ruta: "/pages/TermsAndConditions",
+    ruta: "/TermsAndConditions",
   },
   {
     nombre: "Protección de datos",
-    ruta: "/pages/DataProtection",
+    ruta: "/DataProtection",
   },
 ];
 

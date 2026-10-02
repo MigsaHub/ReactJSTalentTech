@@ -8,6 +8,7 @@ import TermsAndConditions from "./components/pages/TermsAndConditions";
 import DataProtection from "./components/pages/DataProtection";
 import IntelectualProperty from "./components/pages/IntelectualProperty";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import Carrito from "./components/pages/Carrito";
 
 function App() {
   return (
@@ -15,20 +16,17 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Bienvenida />} />
-          <Route path="/pages/contacto" element={<Contacto />} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/products" element={<ItemListContainer />} />
           <Route path="/products/:id" element={<ItemDetailContainer />} />
-          <Route path="/carrito" element={<h1>Carrito</h1>} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+          <Route path="/DataProtection" element={<DataProtection />} />
           <Route
-            path="/pages/TermsAndConditions"
-            element={<TermsAndConditions />}
-          />
-          <Route path="/pages/DataProtection" element={<DataProtection />} />
-          <Route
-            path="/pages/IntelectualProperty"
+            path="/IntelectualProperty"
             element={<IntelectualProperty />}
           />
-          <Route path="/pages/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="*" element={<h1>404 - Página no encontrada</h1>} />
         </Route>
       </Routes>
