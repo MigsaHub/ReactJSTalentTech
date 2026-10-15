@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
+import { useCarrito } from "../context/CarritoContext";
 
 const Nav = () => {
+  const { itemsEnCarrito } = useCarrito();
+  const totalItems = itemsEnCarrito();
   return (
     <nav className={styles.navContainer}>
       <ul className={styles.navList}>
@@ -21,8 +24,13 @@ const Nav = () => {
           </Link>
         </li>
         <li>
+          <Link to="/productos-nacionales" className={styles.navLink}>
+            Productos Nacionales
+          </Link>
+        </li>
+        <li>
           <Link to="/carrito" className={styles.navLink}>
-            Carrito
+            🛒 {totalItems > 0 && <span>{totalItems}</span>}
           </Link>
         </li>
       </ul>

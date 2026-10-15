@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./ItemDetailContainer.module.css";
+import { useCarrito } from "../context/CarritoContext";
+
 function ItemDetailContainer() {
   const { id } = useParams();
+  const { agregarAlCarrito } = useCarrito();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleAddToCart = () => {
+    agregarAlCarrito({ producto: product, cantidad: 1 });
+  };
 
   useEffect(() => {
     fetch(`/data/productos.json`)
@@ -57,7 +64,9 @@ function ItemDetailContainer() {
               : "Sin stock"}
           </p>
 
-          <button className={styles["add-to-cart"]}>Agregar al carrito</button>
+          <button className={styles["add-to-cart"]} onClick={handleAddToCart}>
+            Agregar al carrito
+          </button>
         </div>
       </div>
     </div>
