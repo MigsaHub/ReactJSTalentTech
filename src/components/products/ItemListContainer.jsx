@@ -1,21 +1,25 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
 
+// Importaciones clave de Firebase
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
+
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  //  const [productos, setProductos] = useState([]);
   useEffect(() => {
-    fetch("/data/productos.json")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error al obtener los datos");
-        }
-        return res.json();
-      })
-      .then((datos) => {
-        setProducts(datos);
+    const productosDB = collection(db, "productos nacionales");
+    getDocs(productosDB)
+      .then((resp) => {
+        setProducts(
+          resp.docs.map((doc) => {
+            return { ...doc.data(), id: doc.id };
+          }),
+        );
       })
       .catch((error) => {
         setError(error.message);

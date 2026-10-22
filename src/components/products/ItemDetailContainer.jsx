@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./ItemDetailContainer.module.css";
 import { useCarrito } from "../context/CarritoContext";
+// Importaciones clave de Firebase
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 function ItemDetailContainer() {
   const { id } = useParams();
@@ -16,17 +19,11 @@ function ItemDetailContainer() {
   };
 
   useEffect(() => {
-    fetch(`/data/productos.json`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Error al obtener los datos");
-        }
-        return res.json();
-      })
-      .then((datos) => {
-        const producto = datos.find((item) => item.id === Number(id));
-
-        setProduct(producto);
+    const productosDB = collection(db, "productos nacionales");
+    getDocs(productosDB)
+      .then((resp) => {
+        const producto = resp.docs.find((doc) => doc.id === id);
+        setProduct(producto ? { ...producto.data(), id: producto.id } : null);
       })
       .catch((error) => {
         setError(error.message);
