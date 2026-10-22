@@ -54,6 +54,9 @@ function ItemDetailContainer() {
           <p className={styles["product-description"]}>{product.description}</p>
 
           <p className={styles["product-price"]}>${product.price.toFixed(2)}</p>
+          <p className={styles["product-category"]}>
+            Categoría: {product.category}
+          </p>
 
           <p className={styles["product-stock"]}>
             {product.stock > 0
