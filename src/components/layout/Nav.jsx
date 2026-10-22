@@ -24,11 +24,6 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link to="/productos-nacionales" className={styles.navLink}>
-            Productos Nacionales
-          </Link>
-        </li>
-        <li>
           <Link to="/carrito" className={styles.navLink}>
             🛒 {totalItems > 0 && <span>{totalItems}</span>}
           </Link>

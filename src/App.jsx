@@ -9,7 +9,6 @@ import DataProtection from "./components/pages/DataProtection";
 import IntelectualProperty from "./components/pages/IntelectualProperty";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import Carrito from "./components/pages/Carrito";
-import ProductosNacionales from "./components/pages/ProductosNacionales";
 
 function App() {
   return (
@@ -21,10 +20,6 @@ function App() {
           <Route path="/products" element={<ItemListContainer />} />
           <Route path="/products/:id" element={<ItemDetailContainer />} />
           <Route path="/carrito" element={<Carrito />} />
-          <Route
-            path="/productos-nacionales"
-            element={<ProductosNacionales />}
-          />
           <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
           <Route path="/DataProtection" element={<DataProtection />} />
           <Route
