@@ -2,7 +2,14 @@ import { useCarrito } from "../context/CarritoContext";
 import styles from "./Carrito.module.css";
 
 const Carrito = () => {
-  const { carrito, vaciarCarrito, totalCarrito } = useCarrito();
+  const {
+    carrito,
+    eliminarDelCarrito,
+    incrementarCantidad,
+    decrementarCantidad,
+    vaciarCarrito,
+    totalCarrito,
+  } = useCarrito();
 
   if (carrito.length === 0) {
     return (
@@ -20,16 +27,33 @@ const Carrito = () => {
         {carrito.map((item) => (
           <article className={styles.item} key={item.id}>
             {item.image && (
-              <img
-                className={styles.image}
-                src={item.image}
-                alt={item.title}
-              />
+              <img className={styles.image} src={item.image} alt={item.title} />
             )}
             <div className={styles.itemInfo}>
               <h2 className={styles.itemTitle}>{item.title}</h2>
-              <p className={styles.detail}>Cantidad: {item.cantidad}</p>
-              <p className={styles.price}>Precio: ${item.price.toFixed(2)}</p>
+              <p className={styles.price}>
+                Subtotal: ${(item.price * item.cantidad).toFixed(2)}
+              </p>
+            </div>
+
+            <div>
+              <button
+                onClick={() => decrementarCantidad(item.id)}
+                className={styles.button}>
+                -
+              </button>
+              <span>{item.cantidad}</span>
+
+              <button
+                onClick={() => incrementarCantidad(item.id)}
+                className={styles.button}>
+                +
+              </button>
+              <button
+                onClick={() => eliminarDelCarrito(item.id)}
+                className={styles.removeButton}>
+                Eliminar
+              </button>
             </div>
           </article>
         ))}
