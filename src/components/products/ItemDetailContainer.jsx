@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./ItemDetailContainer.module.css";
+import LoadingSpinner from "./LoadingSpinner";
 import { useCarrito } from "../context/CarritoContext";
 // Importaciones clave de Firebase
 import { collection, getDocs } from "firebase/firestore";
@@ -33,7 +34,9 @@ function ItemDetailContainer() {
       });
   }, [id]);
 
-  if (loading) return <p>Cargando detalle del producto...</p>;
+  if (loading) {
+    return <LoadingSpinner label="Cargando detalle del producto..." />;
+  }
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Detalle de producto no encontrado.</p>;
 

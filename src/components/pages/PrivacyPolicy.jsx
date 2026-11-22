@@ -1,8 +1,8 @@
+import LegalPage from "./legal/LegalPage";
+import { legalPages } from "./legal/LegalData";
+
 function PrivacyPolicy() {
-  return (
-    <div>
-      <h1>Política de Privacidad</h1>
-    </div>
-  );
+  return <LegalPage page={legalPages.privacidad} />;
 }
+
 export default PrivacyPolicy;

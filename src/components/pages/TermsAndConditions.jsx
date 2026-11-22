@@ -1,8 +1,8 @@
+import LegalPage from "./legal/LegalPage";
+import { legalPages } from "./legal/LegalData";
+
 function TermsAndConditions() {
-  return (
-    <div>
-      <h1>Términos y Condiciones</h1>
-    </div>
-  );
+  return <LegalPage page={legalPages.terminos} />;
 }
+
 export default TermsAndConditions;

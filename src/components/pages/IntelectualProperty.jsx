@@ -1,8 +1,8 @@
-function IntelectualProperty() {
-  return (
-    <div>
-      <h1>Propiedad Intelectual</h1>
-    </div>
-  );
+import LegalPage from "./legal/LegalPage";
+import { legalPages } from "./legal/LegalData";
+
+function IntellectualProperty() {
+  return <LegalPage page={legalPages.propiedadIntelectual} />;
 }
-export default IntelectualProperty;
+
+export default IntellectualProperty;

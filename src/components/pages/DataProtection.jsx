@@ -1,9 +1,8 @@
+import LegalPage from "./legal/LegalPage";
+import { legalPages } from "./legal/LegalData";
+
 function DataProtection() {
-  return (
-    <div>
-      <h1>Protección de Datos</h1>
-    </div>
-  );
+  return <LegalPage page={legalPages.proteccionDatos} />;
 }
 
 export default DataProtection;

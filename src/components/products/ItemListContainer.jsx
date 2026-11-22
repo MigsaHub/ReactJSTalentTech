@@ -1,6 +1,6 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
-
+import LoadingSpinner from "./LoadingSpinner";
 // Importaciones clave de Firebase
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -30,7 +30,7 @@ function ItemListContainer() {
   }, []);
 
   if (loading) {
-    return <p>Cargando...</p>;
+    return <LoadingSpinner label="Cargando productos..." />;
   }
   if (error) {
     return <p>Error: {error}</p>;
