@@ -43,12 +43,12 @@ const Carrito = () => {
                 -
               </button>
               <span>{item.cantidad}</span>
-
               <button
                 onClick={() => incrementarCantidad(item.id)}
                 className={styles.button}>
                 +
               </button>
+              <span> </span>
               <button
                 onClick={() => eliminarDelCarrito(item.id)}
                 className={styles.removeButton}>
