@@ -46,6 +46,25 @@
   text-align: left;
 }
 
+.productLink {
+  width: fit-content;
+  color: var(--primary, #ff5722);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.productLink:hover {
+  color: var(--primary-hover, #e64a19);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.productLink:focus-visible {
+  outline: 3px solid rgb(255 87 34 / 35%);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .productTitle {
   margin: 0;
   color: var(--color-secondary);

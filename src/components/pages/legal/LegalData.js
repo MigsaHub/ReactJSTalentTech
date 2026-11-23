@@ -2,14 +2,14 @@ export const legalPages = {
   propiedadIntelectual: {
     title: "Propiedad intelectual",
     subtitle:
-      "Información sobre el uso y los derechos del contenido de Gaming Store Pro.",
+      "Información sobre el uso y los derechos del contenido de MS Techno Store.",
     updatedAt: "22 de noviembre de 2026",
     sections: [
       {
         title: "1. Titularidad del contenido",
         paragraphs: [
-          "Todos los contenidos publicados en Gaming Store Pro, incluyendo textos, logotipos, diseños, imágenes, elementos gráficos y material audiovisual, forman parte de la identidad de la tienda o se utilizan con fines ilustrativos.",
-          "La marca MigCorp y Gaming Store Pro son nombres comerciales utilizados para identificar este proyecto.",
+          "Todos los contenidos publicados en MS Techno Store, incluyendo textos, logotipos, diseños, imágenes, elementos gráficos y material audiovisual, forman parte de la identidad de la tienda o se utilizan con fines ilustrativos.",
+          "La marca MigCorp y MS Techno Store son nombres comerciales utilizados para identificar este proyecto.",
         ],
       },
       {
@@ -36,7 +36,7 @@ export const legalPages = {
   privacidad: {
     title: "Políticas de privacidad",
     subtitle:
-      "Conocé cómo se administra la información de los usuarios de Gaming Store Pro.",
+      "Conocé cómo se administra la información de los usuarios de MS Techno Store.",
     updatedAt: "22 de noviembre de 2026",
     sections: [
       {
@@ -72,7 +72,7 @@ export const legalPages = {
       {
         title: "5. Modificaciones",
         paragraphs: [
-          "Gaming Store Pro podrá actualizar esta política para reflejar cambios en sus prácticas o en los requisitos aplicables.",
+          "MS Techno Store podrá actualizar esta política para reflejar cambios en sus prácticas o en los requisitos aplicables.",
         ],
       },
     ],
@@ -81,13 +81,13 @@ export const legalPages = {
   terminos: {
     title: "Términos y condiciones",
     subtitle:
-      "Condiciones generales para navegar y realizar compras en Gaming Store Pro.",
+      "Condiciones generales para navegar y realizar compras en MS Techno Store.",
     updatedAt: "22 de noviembre de 2026",
     sections: [
       {
         title: "1. Aceptación de los términos",
         paragraphs: [
-          "El acceso y uso de Gaming Store Pro implica la aceptación de las condiciones generales establecidas en esta sección. Si el usuario no está de acuerdo con ellas, deberá abstenerse de utilizar el sitio.",
+          "El acceso y uso de MS Techno Store implica la aceptación de las condiciones generales establecidas en esta sección. Si el usuario no está de acuerdo con ellas, deberá abstenerse de utilizar el sitio.",
         ],
       },
       {
@@ -117,7 +117,7 @@ export const legalPages = {
       {
         title: "5. Modificaciones de los términos",
         paragraphs: [
-          "Gaming Store Pro podrá modificar estos términos cuando resulte necesario. Las modificaciones se publicarán en esta sección.",
+          "MS Techno Store podrá modificar estos términos cuando resulte necesario. Las modificaciones se publicarán en esta sección.",
         ],
       },
     ],
@@ -132,7 +132,7 @@ export const legalPages = {
       {
         title: "1. Compromiso con la privacidad",
         paragraphs: [
-          "Gaming Store Pro reconoce la importancia de proteger los datos personales de sus usuarios y promover un tratamiento responsable de la información.",
+          "MS Techno Store reconoce la importancia de proteger los datos personales de sus usuarios y promover un tratamiento responsable de la información.",
         ],
       },
       {

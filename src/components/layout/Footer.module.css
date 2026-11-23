@@ -1,6 +1,6 @@
 .pieDePosteo {
   width: 100%;
-  margin-top: 60px;
+  margin-top: clamp(28px, 4vw, 40px);
 }
 
 .footer {
@@ -70,7 +70,7 @@
   border: none;
   border-radius: 6px;
 
-  background-color: #2563eb;
+  background-color: var(--accent, #2563eb);
   color: white;
 
   font-size: 14px;
@@ -100,7 +100,7 @@
 
   object-fit: cover;
 
-  border: 3px solid #2563eb;
+  border: 3px solid var(--accent, #2563eb);
 }
 
 .footerEquipo {
@@ -153,7 +153,7 @@
 
   border-radius: 50%;
 
-  background-color: #2563eb;
+  background-color: var(--accent, #2563eb);
   color: white;
 
   font-size: 22px;

@@ -8,6 +8,7 @@ import { db } from "../../firebase/config";
 import { useSearch } from "../context/SearchContext";
 import { usePaginacion } from "../../hooks/usePaginacion";
 import FeedbackMessage from "../common/FeedbackMessage";
+import styles from "./ItemListContainer.module.css";
 
 function ItemListContainer() {
   const location = useLocation();
@@ -54,27 +55,63 @@ function ItemListContainer() {
     loading,
   );
 
-  if (loading) {
-    return <LoadingSpinner label="Cargando productos..." />;
-  }
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  const resultCount = productsFiltered.length;
+  const countLabel = resultCount === 1 ? "producto" : "productos";
 
   return (
-    <>
-      {feedback && (
-        <FeedbackMessage type={feedback.type} onDismiss={() => setFeedback(null)}>
-          {feedback.message}
-        </FeedbackMessage>
-      )}
-      <ItemList products={paginatedItems} currentPage={currentPage} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={goToPage}
-      />
-    </>
+    <section className={styles.catalog}>
+      <header className={styles.intro}>
+        <div className={styles.introContent}>
+          <p className={styles.eyebrow}>CATÁLOGO GAMING Y TECNOLOGÍA</p>
+          <h1 className={styles.title}>Encontrá tu próximo upgrade</h1>
+          <p className={styles.description}>
+            Explorá nuestra selección de consolas, periféricos y tecnología.
+            Buscá lo que necesitás y recorré todos los productos.
+          </p>
+        </div>
+      </header>
+
+      <div className={styles.content}>
+        {feedback && (
+          <FeedbackMessage
+            type={feedback.type}
+            onDismiss={() => setFeedback(null)}>
+            {feedback.message}
+          </FeedbackMessage>
+        )}
+
+        {loading ? (
+          <LoadingSpinner label="Cargando productos..." />
+        ) : error ? (
+          <FeedbackMessage type="error">
+            {error.message || "No se pudieron cargar los productos."}
+          </FeedbackMessage>
+        ) : (
+          <>
+            <p className={styles.resultsCount} aria-live="polite">
+              {resultCount} {countLabel}
+              {searchTerm.trim() && ` para “${searchTerm.trim()}”`}
+            </p>
+
+            {resultCount > 0 ? (
+              <>
+                <ItemList products={paginatedItems} currentPage={currentPage} />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={goToPage}
+                />
+              </>
+            ) : (
+              <div className={styles.emptyState}>
+                <h2>No encontramos productos</h2>
+                <p>Probá con otro nombre o borrá la búsqueda para ver el catálogo.</p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </section>
   );
 }
 

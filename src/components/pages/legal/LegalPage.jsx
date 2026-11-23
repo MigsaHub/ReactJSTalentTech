@@ -8,7 +8,7 @@ function LegalPage({ page }) {
   return (
     <section className={styles.legalPage}>
       <div className={styles.contenido}>
-        <span className={styles.etiqueta}>GAMING STORE PRO</span>
+        <span className={styles.etiqueta}>MS Techno Store</span>
 
         <h1>{page.title}</h1>
 

@@ -30,7 +30,7 @@
   border-radius: 20px;
 
   background-color: #e0e7ff;
-  color: #2563eb;
+  color: var(--accent, #2563eb);
 
   font-size: 12px;
   font-weight: 700;

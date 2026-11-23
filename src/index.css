@@ -5,6 +5,8 @@
   --surface: #ffffff;
   --border: #e1e5eb;
   --primary: #ff5722;
+  --primary-hover: #e64a19;
+  --accent: #2563eb;
   --shadow: 0 8px 24px rgba(30, 45, 70, 0.1);
 
   font-family: "Segoe UI", system-ui, sans-serif;
@@ -32,6 +34,15 @@ body {
 
 a {
   color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgb(255 87 34 / 40%);
+  outline-offset: 2px;
 }
 
 button,

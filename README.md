@@ -1,4 +1,4 @@
-# Gaming Store Pro
+# MS Techno Store
 
 Aplicación de una tienda de productos gaming y tecnológicos. Está desarrollada con React, Vite y Firebase, y permite consultar el catálogo, administrar productos y gestionar un carrito de compras.
 
@@ -69,17 +69,17 @@ La protección de rutas en React controla el acceso a la interfaz. Las reglas de
 
 ## Rutas principales
 
-| Ruta | Contenido |
-| --- | --- |
-| `/` | Página de inicio |
-| `/products` | Catálogo y búsqueda |
-| `/products/:id` | Detalle de producto |
-| `/:categoryId` | Productos de una categoría |
-| `/carrito` | Carrito de compras |
-| `/contacto` | Formulario de contacto simulado |
-| `/login` | Inicio de sesión |
-| `/register` | Registro |
-| `/panel` | Administración de productos para administradores |
+| Ruta            | Contenido                                        |
+| --------------- | ------------------------------------------------ |
+| `/`             | Página de inicio                                 |
+| `/products`     | Catálogo y búsqueda                              |
+| `/products/:id` | Detalle de producto                              |
+| `/:categoryId`  | Productos de una categoría                       |
+| `/carrito`      | Carrito de compras                               |
+| `/contacto`     | Formulario de contacto simulado                  |
+| `/login`        | Inicio de sesión                                 |
+| `/register`     | Registro                                         |
+| `/panel`        | Administración de productos para administradores |
 
 También hay páginas para términos y condiciones, privacidad, protección de datos y propiedad intelectual. El catálogo y el panel muestran tres resultados por página; la ruta por categoría actualmente presenta todos los resultados de esa categoría.
 

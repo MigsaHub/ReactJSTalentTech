@@ -4,9 +4,9 @@ function Bienvenida() {
   return (
     <section className={styles.bienvenida}>
       <div className={styles.contenido}>
-        <span className={styles.etiqueta}>GAMING STORE PRO</span>
+        <span className={styles.etiqueta}>MS Techno Store</span>
 
-        <h1>Bienvenido a MigCorp</h1>
+        <h1>Bienvenido a MS Techno Store</h1>
 
         <p>
           Somos una tienda especializada en productos gaming, tecnología y

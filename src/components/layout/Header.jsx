@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.brand}>Gaming Store Pro</h1>
+      <h1 className={styles.brand}>MS Techno Store</h1>
       <Nav />
       {/* Barra de Busqueda */}
       <form
