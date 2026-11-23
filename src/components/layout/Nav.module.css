@@ -12,7 +12,7 @@
 }
 
 .navLink {
-  color: #ffffff;
+  color: #687386;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -20,5 +20,5 @@
 }
 
 .navLink:hover {
-  color: white;
+  color: #202b3c;
 }

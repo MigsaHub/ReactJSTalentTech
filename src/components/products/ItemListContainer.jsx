@@ -1,33 +1,47 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
-// Importaciones clave de Firebase
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useSearch } from "../context/SearchContext";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //  const [productos, setProductos] = useState([]);
+  // Acceder al término de búsqueda desde el contexto
+  const { searchTerm } = useSearch();
+
   useEffect(() => {
-    const productosDB = collection(db, "productos nacionales");
-    getDocs(productosDB)
-      .then((resp) => {
-        setProducts(
-          resp.docs.map((doc) => {
-            return { ...doc.data(), id: doc.id };
-          }),
+    const getProducts = async () => {
+      try {
+        const productsRef = collection(db, "productos nacionales");
+        const response = await getDocs(productsRef);
+
+        const productList = response.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setProducts(productList);
+      } catch (error) {
+        console.error(
+          "Error al obtener productos nacionales desde Firestore",
+          error,
         );
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
+        setError(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    getProducts();
   }, []);
+
+  const productsFiltered = products.filter((prod) =>
+    prod.title?.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   if (loading) {
     return <LoadingSpinner label="Cargando productos..." />;
@@ -36,7 +50,7 @@ function ItemListContainer() {
     return <p>Error: {error}</p>;
   }
 
-  return <ItemList products={products} />;
+  return <ItemList products={productsFiltered} />;
 }
 
 export default ItemListContainer;

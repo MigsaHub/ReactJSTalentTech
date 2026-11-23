@@ -36,22 +36,39 @@ const Carrito = () => {
               </p>
             </div>
 
-            <div>
-              <button
-                onClick={() => decrementarCantidad(item.id)}
-                className={styles.button}>
-                -
-              </button>
-              <span>{item.cantidad}</span>
-              <button
-                onClick={() => incrementarCantidad(item.id)}
-                className={styles.button}>
-                +
-              </button>
-              <span> </span>
+            <div className={styles.itemActions}>
+              <div className={styles.quantityControls}>
+                <button
+                  onClick={() => decrementarCantidad(item.id)}
+                  className={styles.quantityButton}
+                  aria-label={`Disminuir cantidad de ${item.title}`}>
+                  -
+                </button>
+                <span className={styles.quantity}>{item.cantidad}</span>
+                <button
+                  onClick={() => incrementarCantidad(item.id)}
+                  className={styles.quantityButton}
+                  aria-label={`Aumentar cantidad de ${item.title}`}>
+                  +
+                </button>
+              </div>
               <button
                 onClick={() => eliminarDelCarrito(item.id)}
-                className={styles.removeButton}>
+                className={styles.removeButton}
+                aria-label={`Eliminar ${item.title} del carrito`}>
+                <svg
+                  className={styles.trashIcon}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true">
+                  <path
+                    d="M4 7h16M10 11v6m4-6v6M5 7l1 14h12l1-14M9 7V4h6v3"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
                 Eliminar
               </button>
             </div>

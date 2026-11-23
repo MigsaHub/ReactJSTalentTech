@@ -74,6 +74,94 @@
   font-weight: 700;
 }
 
+.itemActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.quantityControls {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border, #e1e5eb);
+  border-radius: 8px;
+  background: var(--bg, #f5f7fb);
+}
+
+.quantityButton {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text, #303846);
+  background: var(--surface, #ffffff);
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.quantityButton:hover {
+  border-color: var(--primary, #ff5722);
+  color: var(--primary, #ff5722);
+}
+
+.quantity {
+  min-width: 2ch;
+  color: var(--text, #303846);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.removeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #f2c9c2;
+  border-radius: 8px;
+  color: #b93825;
+  background: #fff7f5;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.removeButton:hover {
+  border-color: #e7a99e;
+  color: #982b1b;
+  background: #ffebe7;
+}
+
+.trashIcon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+
+.quantityButton:focus-visible,
+.removeButton:focus-visible {
+  outline: 3px solid rgb(255 87 34 / 35%);
+  outline-offset: 2px;
+}
+
 .summary {
   display: flex;
   align-items: center;
@@ -125,6 +213,12 @@
     align-items: flex-start;
     gap: 12px;
     padding: 12px;
+  }
+
+  .itemActions {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
   }
 
   .image {
