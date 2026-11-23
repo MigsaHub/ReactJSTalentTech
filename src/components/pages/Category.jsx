@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../products/LoadingSpinner";
@@ -12,23 +12,37 @@ const Categories = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setLoading(true);
+
       try {
-        const categoriesCollection = collection(db, "productos nacionales");
-        const categoriesSnapshot = await getDocs(categoriesCollection);
-        const productsList = categoriesSnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
+        const productsCollection = collection(db, "productos nacionales");
+        const categoryQuery = query(
+          productsCollection,
+          where("category", "==", categoryId),
+        );
+        const categoriesSnapshot = await getDocs(categoryQuery);
+        let productsList = categoriesSnapshot.docs.map((productDoc) => ({
+          ...productDoc.data(),
+          id: productDoc.id,
         }));
 
-        // Filtrar los productos por la categoría seleccionada
-        const filteredProducts = productsList.filter(
-          (product) =>
-            product.category?.toLowerCase() === categoryId.toLocaleLowerCase(),
-        );
+        // Mantiene la búsqueda sin distinguir mayúsculas si la categoría no coincide exactamente.
+        if (productsList.length === 0) {
+          const allProductsSnapshot = await getDocs(productsCollection);
+          productsList = allProductsSnapshot.docs
+            .map((productDoc) => ({
+              ...productDoc.data(),
+              id: productDoc.id,
+            }))
+            .filter(
+              (product) =>
+                product.category?.toLowerCase() === categoryId.toLowerCase(),
+            );
+        }
 
-        setProducts(filteredProducts);
+        setProducts(productsList);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error al obtener productos por categoría:", error);
       } finally {
         setLoading(false);
       }
