@@ -36,7 +36,7 @@ export const FormProductContainer = ({ product, onSave, onCancel }) => {
     const price = Number(datosForm.price);
     const stock = Number(datosForm.stock);
 
-    if (!Number.isFinite(price) || price < 0) {
+    if (price < 0) {
       setError("Ingresá un precio válido, igual o mayor que cero.");
       return;
     }

@@ -6,6 +6,8 @@ import {
   updateProduct,
 } from "../../services/productService";
 import { FormProductContainer } from "../products/FormProductContainer";
+import Pagination from "../products/Pagination";
+import { usePaginacion } from "../../hooks/usePaginacion";
 import styles from "./Panel.module.css";
 
 export const Panel = () => {
@@ -50,6 +52,11 @@ export const Panel = () => {
 
     return matchesName && matchesCategory;
   });
+  const { currentPage, totalPages, paginatedItems, goToPage } = usePaginacion(
+    filteredProducts,
+    3,
+    isLoading,
+  );
 
   const openCreateForm = () => {
     setEditingProduct(null);
@@ -203,7 +210,7 @@ export const Panel = () => {
                 </tr>
               </thead>
               <tbody>
-                {filteredProducts.map((product) => (
+                {paginatedItems.map((product) => (
                   <tr key={product.id}>
                     <td>
                       {product.image ? (
@@ -266,6 +273,11 @@ export const Panel = () => {
               </tbody>
             </table>
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={goToPage}
+          />
         </>
       )}
 

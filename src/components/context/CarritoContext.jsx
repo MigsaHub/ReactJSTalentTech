@@ -16,6 +16,7 @@ const normalizarProducto = (producto) => ({
   title: producto.title ?? producto.nombre,
   price: producto.price ?? producto.precio,
   image: producto.image,
+  stock: producto.stock == null ? null : Number(producto.stock),
 });
 
 //Componente provider del contexto del carrito
@@ -24,6 +25,7 @@ export const CarritoProvider = ({ children }) => {
 
   const agregarAlCarrito = ({ producto, cantidad = 1 }) => {
     const productoNormalizado = normalizarProducto(producto);
+    const stock = productoNormalizado.stock;
 
     setCarrito((carritoPrevio) => {
       const existente = carritoPrevio.find(
@@ -31,14 +33,31 @@ export const CarritoProvider = ({ children }) => {
       );
 
       if (existente) {
+        if (stock !== null && existente.cantidad >= stock) return carritoPrevio;
+
         return carritoPrevio.map((item) =>
           item.id === productoNormalizado.id
-            ? { ...item, cantidad: item.cantidad + cantidad }
+            ? {
+                ...item,
+                cantidad:
+                  stock === null
+                    ? item.cantidad + cantidad
+                    : Math.min(item.cantidad + cantidad, stock),
+                stock,
+              }
             : item,
         );
       }
 
-      return [...carritoPrevio, { ...productoNormalizado, cantidad }];
+      if (stock !== null && stock < 1) return carritoPrevio;
+
+      return [
+        ...carritoPrevio,
+        {
+          ...productoNormalizado,
+          cantidad: stock === null ? cantidad : Math.min(cantidad, stock),
+        },
+      ];
     });
   };
 
@@ -50,9 +69,15 @@ export const CarritoProvider = ({ children }) => {
 
   const incrementarCantidad = (id) => {
     setCarrito((carritoPrevio) =>
-      carritoPrevio.map((item) =>
-        item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item,
-      ),
+      carritoPrevio.map((item) => {
+        if (item.id !== id) return item;
+
+        if (item.stock !== null && item.stock !== undefined) {
+          if (item.cantidad >= item.stock) return item;
+        }
+
+        return { ...item, cantidad: item.cantidad + 1 };
+      }),
     );
   };
 

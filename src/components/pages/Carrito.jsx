@@ -48,6 +48,11 @@ const Carrito = () => {
                 <button
                   onClick={() => incrementarCantidad(item.id)}
                   className={styles.quantityButton}
+                  disabled={
+                    item.stock !== null &&
+                    item.stock !== undefined &&
+                    item.cantidad >= item.stock
+                  }
                   aria-label={`Aumentar cantidad de ${item.title}`}>
                   +
                 </button>

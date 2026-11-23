@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./ItemDetailContainer.module.css";
 import LoadingSpinner from "./LoadingSpinner";
@@ -9,13 +9,21 @@ import { db } from "../../firebase/config";
 
 function ItemDetailContainer() {
   const { id } = useParams();
-  const { agregarAlCarrito } = useCarrito();
+  const [searchParams] = useSearchParams();
+  const pageParam = Number(searchParams.get("page"));
+  const returnPage =
+    Number.isInteger(pageParam) && pageParam > 1 ? pageParam : 1;
+  const catalogPath =
+    returnPage > 1 ? `/products?page=${returnPage}` : "/products";
+  const { carrito, agregarAlCarrito } = useCarrito();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const handleAddToCart = () => {
+    if (!product) return;
+
     agregarAlCarrito({ producto: product, cantidad: 1 });
   };
 
@@ -40,8 +48,16 @@ function ItemDetailContainer() {
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Detalle de producto no encontrado.</p>;
 
+  const stock = Math.max(0, Number(product.stock) || 0);
+  const quantityInCart =
+    carrito.find((item) => item.id === product.id)?.cantidad ?? 0;
+  const remainingStock = Math.max(0, stock - quantityInCart);
+
   return (
     <div className={styles["product-detail"]}>
+      <Link className={styles["back-link"]} to={catalogPath}>
+        ← Volver al catálogo
+      </Link>
       <div className={styles["product-detail-card"]}>
         <div className={styles["product-image-container"]}>
           <img
@@ -62,13 +78,16 @@ function ItemDetailContainer() {
           </p>
 
           <p className={styles["product-stock"]}>
-            {product.stock > 0
-              ? `Stock disponible: ${product.stock}`
-              : "Sin stock"}
+            {remainingStock > 0
+              ? `Unidades disponibles para agregar: ${remainingStock}`
+              : "No hay más unidades disponibles para agregar"}
           </p>
 
-          <button className={styles["add-to-cart"]} onClick={handleAddToCart}>
-            Agregar al carrito
+          <button
+            className={styles["add-to-cart"]}
+            onClick={handleAddToCart}
+            disabled={remainingStock === 0}>
+            {remainingStock > 0 ? "Agregar al carrito" : "No Stock"}
           </button>
         </div>
       </div>

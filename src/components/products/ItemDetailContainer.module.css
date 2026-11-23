@@ -10,6 +10,18 @@
   color: #333;
 }
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--text-light, #687386);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--primary, #ff5722);
+}
+
 /* Card principal */
 .product-detail-card {
   display: flex;

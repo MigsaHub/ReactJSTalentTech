@@ -1,9 +1,11 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import Pagination from "./Pagination";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useSearch } from "../context/SearchContext";
+import { usePaginacion } from "../../hooks/usePaginacion";
 
 function ItemListContainer() {
   const [products, setProducts] = useState([]);
@@ -42,6 +44,11 @@ function ItemListContainer() {
   const productsFiltered = products.filter((prod) =>
     prod.title?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+  const { currentPage, totalPages, paginatedItems, goToPage } = usePaginacion(
+    productsFiltered,
+    3,
+    loading,
+  );
 
   if (loading) {
     return <LoadingSpinner label="Cargando productos..." />;
@@ -50,7 +57,16 @@ function ItemListContainer() {
     return <p>Error: {error}</p>;
   }
 
-  return <ItemList products={productsFiltered} />;
+  return (
+    <>
+      <ItemList products={paginatedItems} currentPage={currentPage} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={goToPage}
+      />
+    </>
+  );
 }
 
 export default ItemListContainer;
