@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 20px 24px;
+  color: #fff;
+  background: #1f2937;
+}
+
+.brand {
+  flex: 1 1 100%;
+  margin: 0;
+  color: inherit;
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.account {
+  margin-left: auto;
+}
+
+.accountList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.accountLink {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.accountLink:hover {
+  color: var(--primary);
+}
+
+.welcome {
+  color: #d7dce5;
+  font-size: 0.9rem;
+}
+
+.logoutButton {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #697586;
+  border-radius: 0.375rem;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.logoutButton:hover {
+  border-color: var(--primary);
+  background: rgb(255 255 255 / 8%);
+}
+
+@media (max-width: 720px) {
+  .account {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    gap: 0.75rem;
+    padding: 16px;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+  }
+
+  .accountList {
+    gap: 0.75rem;
+  }
+}

@@ -56,41 +56,6 @@ main {
   width: 100%;
 }
 
-/* Header global de la aplicacion */
-
-.encabezado {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 20px 24px;
-  color: #ffffff;
-  background: #1f2937;
-}
-
-.encabezado h1 {
-  flex: 1 1 100%;
-  margin: 0;
-  color: #ffffff;
-  font-size: 1.8rem;
-  line-height: 1.2;
-}
-
-.encabezado nav {
-  display: inline-flex;
-}
-
-.encabezado a {
-  color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.encabezado a:hover {
-  color: var(--primary);
-}
-
 /* Footer global de la aplicacion */
 
 .pie-de-posteo {
@@ -107,15 +72,6 @@ main {
 }
 
 @media (max-width: 480px) {
-  .encabezado {
-    gap: 0.75rem;
-    padding: 16px;
-  }
-
-  .encabezado h1 {
-    font-size: 1.5rem;
-  }
-
   .pie-de-posteo {
     padding: 16px;
   }

@@ -1,6 +1,12 @@
 import styles from "./Contacto.module.css";
 
 function Contacto() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    window.alert("Mensaje enviado correctamente. ¡Gracias por contactarnos!");
+    event.currentTarget.reset();
+  };
+
   return (
     <div className={styles.contacto}>
       <h1 className={styles.titulo}>Contáctanos</h1>
@@ -10,7 +16,7 @@ function Contacto() {
         antes posible.
       </p>
 
-      <form className={styles.formulario}>
+      <form className={styles.formulario} onSubmit={handleSubmit}>
         <div className={styles.campo}>
           <label htmlFor="nombre">Nombre</label>
 

@@ -28,11 +28,6 @@ const Nav = () => {
             🛒 {totalItems > 0 && <span>{totalItems}</span>}
           </Link>
         </li>
-        <li>
-          <Link to="/panel" className={styles.navLink}>
-            Panel
-          </Link>
-        </li>
       </ul>
     </nav>
   );
