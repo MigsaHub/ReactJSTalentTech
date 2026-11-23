@@ -1,20 +1,34 @@
 import { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [error, setError] = useState(null);
+
   const navigate = useNavigate();
-  const auth = getAuth();
+  const { signUp } = useAuth();
 
   const handleRegister = async (event) => {
     event.preventDefault();
     setError(null); // Resetear el error antes de intentar registrar
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/login"); // Redirigir al usuario a la página de login después del registro
+      const userCredential = await signUp(email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "usuarios", user.uid), {
+        nombre: nombre,
+        apellido: apellido,
+        rol: "usuario",
+        email: email,
+      });
+
+      navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         const userChoice = window.confirm(
@@ -40,6 +54,24 @@ const Register = () => {
     <div>
       <h2>Registro de Usuario</h2>
       <form onSubmit={handleRegister}>
+        <div className="form-group">
+          <label>Nombre</label>
+          <input
+            type="text"
+            value={nombre}
+            onChange={(evento) => setNombre(evento.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Apellido</label>
+          <input
+            type="text"
+            value={apellido}
+            onChange={(evento) => setApellido(evento.target.value)}
+            required
+          />
+        </div>
         <div>
           <label htmlFor="email">Correo Electrónico:</label>
           <input

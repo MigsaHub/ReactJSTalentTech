@@ -1,30 +1,25 @@
 import { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Usuario logueado:", user);
-        alert("Usuario logueado con éxito");
-        navigate("/products");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error("Error al loguearse:", errorCode, errorMessage);
-        alert("Error al loguearse:" + errorMessage);
-      });
+    try {
+      await login(email, password);
+      alert("¡Usuario logueado con éxito!");
+      navigate("/products");
+    } catch (error) {
+      console.error("Error en el login:", error.code, error.message);
+      alert("Error: " + error.message);
+    }
   };
 
   return (
