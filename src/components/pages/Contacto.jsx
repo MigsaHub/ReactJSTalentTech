@@ -1,9 +1,13 @@
+import { useState } from "react";
 import styles from "./Contacto.module.css";
+import FeedbackMessage from "../common/FeedbackMessage";
 
 function Contacto() {
+  const [submitted, setSubmitted] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    window.alert("Mensaje enviado correctamente. ¡Gracias por contactarnos!");
+    setSubmitted(true);
     event.currentTarget.reset();
   };
 
@@ -15,6 +19,12 @@ function Contacto() {
         Estamos aquí para ayudarte. Envíanos tu mensaje y te responderemos lo
         antes posible.
       </p>
+
+      {submitted && (
+        <FeedbackMessage>
+          Mensaje enviado correctamente. ¡Gracias por contactarnos!
+        </FeedbackMessage>
+      )}
 
       <form className={styles.formulario} onSubmit={handleSubmit}>
         <div className={styles.campo}>

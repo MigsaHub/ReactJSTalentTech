@@ -8,6 +8,7 @@ import {
 import { FormProductContainer } from "../products/FormProductContainer";
 import Pagination from "../products/Pagination";
 import { usePaginacion } from "../../hooks/usePaginacion";
+import ConfirmDialog from "../common/ConfirmDialog";
 import styles from "./Panel.module.css";
 
 export const Panel = () => {
@@ -20,6 +21,7 @@ export const Panel = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -97,13 +99,13 @@ export const Panel = () => {
     setalert("El producto se agregó correctamente.");
   };
 
-  const handleDeleteProduct = async (product) => {
-    const confirmed = window.confirm(
-      `¿Seguro que querés eliminar “${product.title}”? Esta acción no se puede deshacer.`,
-    );
+  const handleDeleteProduct = (product) => {
+    setProductToDelete(product);
+  };
 
-    if (!confirmed) return;
-
+  const confirmDeleteProduct = async () => {
+    const product = productToDelete;
+    if (!product) return;
     setDeletingId(product.id);
     setError("");
     setalert("");
@@ -116,9 +118,11 @@ export const Panel = () => {
         ),
       );
       setalert("El producto se eliminó correctamente.");
+      setProductToDelete(null);
     } catch (deleteError) {
       console.error("Error al eliminar el producto:", deleteError);
       setError("No se pudo eliminar el producto. Intentá nuevamente.");
+      setProductToDelete(null);
     } finally {
       setDeletingId(null);
     }
@@ -287,6 +291,17 @@ export const Panel = () => {
           onSave={handleSaveProduct}
           onCancel={closeForm}
         />
+      )}
+      {productToDelete && (
+        <ConfirmDialog
+          title="Eliminar producto"
+          confirmLabel="Eliminar producto"
+          onConfirm={confirmDeleteProduct}
+          onCancel={() => setProductToDelete(null)}
+          isLoading={deletingId === productToDelete.id}
+        >
+          ¿Seguro que querés eliminar “{productToDelete.title}”? Esta acción no se puede deshacer.
+        </ConfirmDialog>
       )}
     </section>
   );

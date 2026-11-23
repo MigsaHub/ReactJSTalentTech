@@ -1,0 +1,68 @@
+.backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  padding: 20px;
+  place-items: center;
+  background: rgb(24 32 44 / 58%);
+}
+
+.dialog {
+  width: min(100%, 440px);
+  padding: 24px;
+  border: 1px solid var(--border, #e1e5eb);
+  border-radius: 12px;
+  background: var(--surface, #fff);
+  box-shadow: 0 18px 50px rgb(20 30 45 / 24%);
+}
+
+.dialog h2 {
+  margin: 0;
+  color: var(--text, #303846);
+  font-size: 1.25rem;
+}
+
+.content {
+  margin-top: 12px;
+  color: var(--text-light, #687386);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.actions button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--border, #e1e5eb);
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.actions button:focus-visible {
+  outline: 3px solid rgb(255 87 34 / 30%);
+  outline-offset: 2px;
+}
+
+.actions button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.cancelButton {
+  color: var(--text, #303846);
+  background: #fff;
+}
+
+.confirmButton {
+  border-color: #a23c30 !important;
+  color: #fff;
+  background: #a23c30;
+}

@@ -1,16 +1,20 @@
 import ItemList from "./ItemList";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import Pagination from "./Pagination";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useSearch } from "../context/SearchContext";
 import { usePaginacion } from "../../hooks/usePaginacion";
+import FeedbackMessage from "../common/FeedbackMessage";
 
 function ItemListContainer() {
+  const location = useLocation();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [feedback, setFeedback] = useState(() => location.state?.feedback || null);
 
   // Acceder al término de búsqueda desde el contexto
   const { searchTerm } = useSearch();
@@ -59,6 +63,11 @@ function ItemListContainer() {
 
   return (
     <>
+      {feedback && (
+        <FeedbackMessage type={feedback.type} onDismiss={() => setFeedback(null)}>
+          {feedback.message}
+        </FeedbackMessage>
+      )}
       <ItemList products={paginatedItems} currentPage={currentPage} />
       <Pagination
         currentPage={currentPage}

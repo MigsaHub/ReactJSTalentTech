@@ -4,15 +4,18 @@ import { db } from "../../firebase/config";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../products/LoadingSpinner";
 import ItemList from "../products/ItemList";
+import styles from "./Category.module.css";
 
 const Categories = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
   const { categoryId } = useParams();
 
   useEffect(() => {
     const fetchCategories = async () => {
       setLoading(true);
+      setError("");
 
       try {
         const productsCollection = collection(db, "productos nacionales");
@@ -42,6 +45,9 @@ const Categories = () => {
 
         setProducts(productsList);
       } catch (error) {
+        setError(
+          "No se pudieron cargar los productos de esta categoría. Intentá nuevamente.",
+        );
         console.error("Error al obtener productos por categoría:", error);
       } finally {
         setLoading(false);
@@ -57,6 +63,10 @@ const Categories = () => {
     <div>
       {loading ? (
         <LoadingSpinner label="Cargando productos..." />
+      ) : error ? (
+        <p className={styles.errorMessage} role="alert">
+          {error}
+        </p>
       ) : products.length > 0 ? (
         <div>
           <ItemList products={products} />

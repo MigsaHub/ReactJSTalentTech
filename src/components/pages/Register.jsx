@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useAuth } from "../context/AuthContext";
@@ -11,6 +11,7 @@ const Register = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [error, setError] = useState(null);
+  const [emailAlreadyUsed, setEmailAlreadyUsed] = useState(false);
 
   const navigate = useNavigate();
   const { signUp } = useAuth();
@@ -18,6 +19,7 @@ const Register = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     setError(null);
+    setEmailAlreadyUsed(false);
 
     try {
       const userCredential = await signUp(email, password);
@@ -33,14 +35,7 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        const userChoice = window.confirm(
-          "El correo electrónico ya está en uso. ¿Deseas iniciar sesión en su lugar?",
-        );
-        if (userChoice) {
-          navigate("/login");
-        } else {
-          navigate("/");
-        }
+        setEmailAlreadyUsed(true);
       } else {
         console.error(
           "Error al registrar el usuario:",
@@ -111,6 +106,15 @@ const Register = () => {
             <p className={styles.error} role="alert">
               {error}
             </p>
+          )}
+          {emailAlreadyUsed && (
+            <div className={styles.emailNotice} role="status">
+              <p>Este correo ya tiene una cuenta. ¿Querés iniciar sesión?</p>
+              <Link className={styles.signupLink} to="/login">Iniciar sesión</Link>
+              <button className={styles.secondaryButton} type="button" onClick={() => setEmailAlreadyUsed(false)}>
+                Seguir con otro correo
+              </button>
+            </div>
           )}
           <button className={styles.submitButton} type="submit">
             Crear cuenta

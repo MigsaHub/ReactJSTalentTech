@@ -36,13 +36,13 @@ export const FormProductContainer = ({ product, onSave, onCancel }) => {
     const price = Number(datosForm.price);
     const stock = Number(datosForm.stock);
 
-    if (price < 0) {
-      setError("Ingresá un precio válido, igual o mayor que cero.");
+    if (price <= 0) {
+      setError("El precio debe ser mayor que cero.");
       return;
     }
 
     if (!Number.isInteger(stock) || stock < 0) {
-      setError("Ingresá un stock válido, entero e igual o mayor que cero.");
+      setError("El stock debe ser un numero entero igual o mayor que cero.");
       return;
     }
 

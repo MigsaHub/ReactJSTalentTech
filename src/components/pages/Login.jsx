@@ -1,25 +1,29 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import FeedbackMessage from "../common/FeedbackMessage";
 import styles from "./AuthPage.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setErrorMessage("");
 
     try {
       await login(email, password);
-      alert("¡Usuario logueado con éxito!");
-      navigate("/products");
+      navigate("/products", {
+        state: { feedback: { type: "success", message: "¡Iniciaste sesión correctamente!" } },
+      });
     } catch (error) {
       console.error("Error en el login:", error.code, error.message);
-      alert("Error: " + error.message);
+      setErrorMessage("No se pudo iniciar sesión. Revisá el correo y la contraseña e intentá nuevamente.");
     }
   };
 
@@ -35,6 +39,8 @@ const Login = () => {
             Ingresá tus datos para continuar.
           </p>
         </header>
+
+        {errorMessage && <FeedbackMessage type="error">{errorMessage}</FeedbackMessage>}
 
         <form className={styles.form} onSubmit={handleLogin}>
           <div className={styles.field}>
