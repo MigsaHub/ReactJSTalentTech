@@ -1,111 +1,114 @@
 import { useState } from "react";
 import { FormProduct } from "./FormProduct";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { uploadProductImage } from "../../services/productService";
+import styles from "./FormProductContainer.module.css";
 
-export const FormProductContainer = () => {
+const createInitialFormData = (product) => ({
+  title: product?.title ?? "",
+  description: product?.description ?? "",
+  price: product?.price ?? "",
+  stock: product?.stock ?? "",
+  category: product?.category ?? "",
+});
+
+export const FormProductContainer = ({ product, onSave, onCancel }) => {
   //estado inicial del formulario
-  const [datosForm, setDatosForm] = useState({
-    title: "",
-    description: "",
-    price: 0,
-    stock: 0,
-    category: "",
-  });
-
+  const [datosForm, setDatosForm] = useState(() =>
+    createInitialFormData(product),
+  );
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const isEditing = Boolean(product);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    const numericFields = ["price", "stock"];
-
-    const newValue = numericFields.includes(name)
-      ? value === ""
-        ? ""
-        : Number(value)
-      : value;
-
-    setDatosForm((prev) => ({
-      ...prev,
-      [name]: newValue,
+    setDatosForm((currentForm) => ({
+      ...currentForm,
+      [name]: value,
     }));
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!image) {
-      alert("Por favor, selecciona una imagen.");
+    setError("");
+
+    const price = Number(datosForm.price);
+    const stock = Number(datosForm.stock);
+
+    if (!Number.isFinite(price) || price < 0) {
+      setError("Ingresá un precio válido, igual o mayor que cero.");
+      return;
+    }
+
+    if (!Number.isInteger(stock) || stock < 0) {
+      setError("Ingresá un stock válido, entero e igual o mayor que cero.");
+      return;
+    }
+
+    if (!image && !product?.image) {
+      setError("Seleccioná una imagen para el producto.");
       return;
     }
 
     setLoading(true);
 
-    //section para subir imagen a Imgbb
-    const apiKey = "bdbb099e6856f557523717589e4e5805"; // Reemplaza con tu API key de Imgbb
-    const formData = new FormData();
-    formData.append("image", image);
-
     try {
-      const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=${apiKey}`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-      const data = await response.json();
+      const imageUrl = image ? await uploadProductImage(image) : product.image;
 
-      if (data.success) {
-        console.log("Imagen subida con éxito:", data.data.url);
+      await onSave({
+        ...datosForm,
+        price,
+        stock,
+        image: imageUrl,
+      });
 
-        const productWithImage = {
-          ...datosForm,
-          image: data.data.url,
-        };
-
-        //end section subir imagen a Imgbb
-
-        // Guardar el producto en Firestore
-        const productRef = collection(db, "productos nacionales");
-        await addDoc(productRef, productWithImage);
-
-        alert("¡Producto guardado con éxito!");
-
-        //reset form
-        setDatosForm({
-          title: "",
-          description: "",
-          price: 0,
-          stock: 0,
-          category: "",
-        });
-
-        setImage(null);
-      } else {
-        throw new Error("Error al subir la imagen:", data.error.message);
-      }
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-      alert("Error al subir la imagen. Por favor, intenta nuevamente.");
+      onCancel();
+    } catch (saveError) {
+      setError(saveError.message || "No se pudo guardar el producto.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <FormProduct
-      datosForm={datosForm}
-      loading={loading}
-      handleChange={handleChange}
-      handleImageChange={handleImageChange}
-      handleSubmit={handleSubmit}
-    />
+    <div className={styles.backdrop}>
+      <section
+        className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-form-title">
+        <div className={styles.modalHeader}>
+          <div>
+            <h2 className={styles.modalTitle} id="product-form-title">
+              {isEditing ? "Editar producto" : "Agregar producto"}
+            </h2>
+          </div>
+          <button
+            className={styles.closeButton}
+            type="button"
+            onClick={onCancel}
+            disabled={loading}
+            aria-label="Cerrar formulario">
+            ×
+          </button>
+        </div>
+
+        <FormProduct
+          datosForm={datosForm}
+          imagePreview={product?.image ?? ""}
+          imageRequired={!product?.image}
+          loading={loading}
+          error={error}
+          isEditing={isEditing}
+          onCancel={onCancel}
+          handleChange={handleChange}
+          handleImageChange={(event) =>
+            setImage(event.target.files?.[0] ?? null)
+          }
+          handleSubmit={handleSubmit}
+        />
+      </section>
+    </div>
   );
 };
