@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useAuth } from "../context/AuthContext";
+import styles from "./AuthPage.module.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -16,16 +17,17 @@ const Register = () => {
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    setError(null); // Resetear el error antes de intentar registrar
+    setError(null);
+
     try {
       const userCredential = await signUp(email, password);
       const user = userCredential.user;
 
       await setDoc(doc(db, "usuarios", user.uid), {
-        nombre: nombre,
-        apellido: apellido,
+        nombre,
+        apellido,
         rol: "usuario",
-        email: email,
+        email,
       });
 
       navigate("/");
@@ -51,52 +53,71 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Registro de Usuario</h2>
-      <form onSubmit={handleRegister}>
-        <div className="form-group">
-          <label>Nombre</label>
-          <input
-            type="text"
-            value={nombre}
-            onChange={(evento) => setNombre(evento.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Apellido</label>
-          <input
-            type="text"
-            value={apellido}
-            onChange={(evento) => setApellido(evento.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Correo Electrónico:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Mínimo 6 caracteres"
-            required
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Registrar</button>
-      </form>
-    </div>
+    <section className={styles.page} aria-labelledby="register-title">
+      <div className={styles.card}>
+        <header className={styles.heading}>
+          <p className={styles.eyebrow}>NUEVA CUENTA</p>
+          <h1 className={styles.title} id="register-title">
+            Crear una cuenta
+          </h1>
+          <p className={styles.description}>
+            Completá tus datos para registrarte en la tienda.
+          </p>
+        </header>
+
+        <form className={styles.form} onSubmit={handleRegister}>
+          <div className={styles.field}>
+            <label htmlFor="nombre">Nombre</label>
+            <input
+              id="nombre"
+              type="text"
+              value={nombre}
+              onChange={(event) => setNombre(event.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="apellido">Apellido</label>
+            <input
+              id="apellido"
+              type="text"
+              value={apellido}
+              onChange={(event) => setApellido(event.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Mínimo 6 caracteres"
+              required
+            />
+          </div>
+          {error && (
+            <p className={styles.error} role="alert">
+              {error}
+            </p>
+          )}
+          <button className={styles.submitButton} type="submit">
+            Crear cuenta
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 
